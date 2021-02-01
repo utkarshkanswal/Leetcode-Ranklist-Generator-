@@ -1,0 +1,22 @@
+body {
+    background-color: rgb(199, 155, 240);
+    /* background-image: url("../Images/sv1.jpg"); */
+}
+
+.container {
+    margin: auto;
+    border: solid 2px slategrey;
+    background-color: rgb(222, 235, 234);
+    width: 30%;
+    /* height: 80%; */
+    margin-top: 100px;
+    background-image: url("../Images/sv1.jpg")
+}
+
+.submit {
+    margin: 20px;
+}
+
+#ip {
+    font-weight: 500;
+}
