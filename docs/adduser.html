@@ -53,11 +53,11 @@
         </div>
     </nav>
     <div class="container">
-        <form action="/" method="post">
+        <form action="/adduser.html" method="post">
 
             <div class="form-group">
                 <label for="exampleInputEmail1" class="form-control-lg" id="ip">Email address</label>
-                <input type="email" class="form-control  form-control-lg" id="exampleInputEmail1"
+                <input name="email" type="email" class="form-control  form-control-lg" id="exampleInputEmail1"
                     aria-describedby="emailHelp" placeholder="Enter email">
                 <small id="emailHelp ip" class="form-text text-muted">We'll never share your email with anyone
                     else.</small>
@@ -66,7 +66,7 @@
                 <div class="input-group-prepend form-control-lg">
                     <label class="input-group-text" for="inputGroupSelect01" id="ip">Year</label>
                 </div>
-                <select class="custom-select" id="inputGroupSelect01">
+                <select name="year" class="custom-select" id="inputGroupSelect01">
                     <option selected>Choose...</option>
                     <option value="1">2017</option>
                     <option value="2">2018</option>
@@ -76,7 +76,7 @@
             </div>
             <div class="form-group">
                 <label for="formGroupExampleInput" class=" form-control-lg" id="ip">Leetcode Username</label>
-                <input type="text" class="form-control  form-control-lg" id="formGroupExampleInput"
+                <input name="username" type="text" class="form-control  form-control-lg" id="formGroupExampleInput"
                     placeholder="Leetcode Username">
             </div>
             <button type="submit" class="btn btn-primary submit" id="ip">Submit</button>

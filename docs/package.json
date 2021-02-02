@@ -9,12 +9,17 @@
   "author": "Utkarsh Kumar",
   "license": "ISC",
   "dependencies": {
+    "body": "^5.1.0",
     "body-parser": "^1.19.0",
     "cheerio": "^1.0.0-rc.5",
+    "export": "^0.1.337",
     "express": "^4.17.1",
-    "fs": "^0.0.1-security",
-    "nodemon": "^2.0.7",
-    "path": "^0.12.7",
+    "mongoose": "^5.11.10",
+    "parser": "^0.1.4",
+    "request": "^2.88.2",
     "request-promise": "^4.2.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }
