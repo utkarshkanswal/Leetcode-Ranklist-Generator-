@@ -15,7 +15,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.set("views", __dirname + "/views"); // set express to look in this folder to render our view
 app.use(express.urlencoded());
-mongoose.connect('mongodb://localhost/Leetcode', {
+mongoose.connect('mongodb+srv://Leetcode:MxRHS4xx5ijHk8IO@leetcoderanklist.dlhii.mongodb.net/UserDetails?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
@@ -36,6 +36,10 @@ app.get("/", function (req, res) {
 app.get("/adduser", function (req, res) {
     res.render("adduser");
 });
+app.get('/Data.JSON', (req, res) => {
+    res.sendFile(path.join(__dirname + '/Data.JSON'));
+});
+
 app.post('/adduser', function (req, res) {
     var mydata = new Student(req.body);
     mydata.save().then(() => {
@@ -66,7 +70,7 @@ app.post('/adduser', function (req, res) {
         });
         setTimeout(function () {
             var final = JSON.stringify(myJson);
-            fs.writeFileSync("landing\Data.JSON", final);
+            fs.writeFileSync("", final);
         }, 10000)
         res.send("This Item has been added to the data base:");
     }).catch(() => {

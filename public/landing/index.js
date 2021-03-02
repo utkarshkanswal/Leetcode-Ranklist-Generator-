@@ -1,7 +1,7 @@
 let arr = [];
 let getTxt = function (basis, order) {
     $.ajax({
-        url: 'landing/Data.JSON',
+        url: 'Data.JSON',
         success: function (data) {
             let myvar = data;
             console.log(myvar);
