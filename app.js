@@ -24,13 +24,13 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
     console.log("We are connected");
 });
+let myJson = [];
 const postSchema = new Schema({
     email: String,
     year: Number,
     username: String
 });
 var Student = mongoose.model('Student', postSchema);
-let myJson = [];
 app.get("/", function (req, res) {
     res.render("index");
 });
@@ -42,6 +42,7 @@ app.get('/Data.JSON', (req, res) => {
 });
 
 app.post('/adduser', function (req, res) {
+    // fs.writeFileSync("Data.JSON", '');
     var mydata = new Student(req.body);
     mydata.save().then(() => {
         Student.find(function (err, obj) {
@@ -71,6 +72,7 @@ app.post('/adduser', function (req, res) {
         });
         setTimeout(function () {
             var final = JSON.stringify(myJson);
+
             fs.writeFileSync("Data.JSON", final);
         }, 10000)
         res.send("This Item has been added to the data base:");
