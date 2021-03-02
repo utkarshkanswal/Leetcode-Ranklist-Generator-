@@ -71,7 +71,7 @@ app.post('/adduser', function (req, res) {
         });
         setTimeout(function () {
             var final = JSON.stringify(myJson);
-            fs.writeFileSync("", final);
+            fs.writeFileSync("Data.JSON", final);
         }, 10000)
         res.send("This Item has been added to the data base:");
     }).catch(() => {
