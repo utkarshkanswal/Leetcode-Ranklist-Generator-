@@ -9,7 +9,11 @@ const app = express();
 const port = 3000;
 const db = mongoose.connection;
 const Schema = mongoose.Schema;
+
+app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.set("views", __dirname + "/views"); // set express to look in this folder to render our view
 app.use(express.urlencoded());
 mongoose.connect('mongodb://localhost/Leetcode', {
     useNewUrlParser: true,
@@ -26,29 +30,13 @@ const postSchema = new Schema({
 });
 var Student = mongoose.model('Student', postSchema);
 let myJson = [];
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname + '/index.html'));
+app.get("/", function (req, res) {
+    res.render("index");
 });
-app.get('/CSS/style.css', (req, res) => {
-    res.sendFile(path.join(__dirname + '/CSS/style.css'));
+app.get("/adduser", function (req, res) {
+    res.render("adduser");
 });
-app.get('/adduser.html', (req, res) => {
-    res.sendFile(path.join(__dirname + '/adduser.html'));
-});
-app.get('/CSS/style1.css', (req, res) => {
-    res.sendFile(path.join(__dirname + '/CSS/style1.css'));
-});
-app.get('/JS/index.js', (req, res) => {
-    res.sendFile(path.join(__dirname + '/JS/index.js'));
-});
-app.get('/Images/sv1.jpg', (req, res) => {
-    res.sendFile(path.join(__dirname + '/Images/sv1.jpg'));
-});
-app.get('/Data.JSON', (req, res) => {
-    res.sendFile(path.join(__dirname + '/Data.JSON'));
-});
-app.post('/adduser.html', function (req, res) {
-
+app.post('/adduser', function (req, res) {
     var mydata = new Student(req.body);
     mydata.save().then(() => {
         Student.find(function (err, obj) {
@@ -78,7 +66,7 @@ app.post('/adduser.html', function (req, res) {
         });
         setTimeout(function () {
             var final = JSON.stringify(myJson);
-            fs.writeFileSync("Data.json", final);
+            fs.writeFileSync("landing\Data.JSON", final);
         }, 10000)
         res.send("This Item has been added to the data base:");
     }).catch(() => {
