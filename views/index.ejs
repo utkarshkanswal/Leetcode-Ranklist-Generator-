@@ -54,7 +54,20 @@
             <div id="box2"><a href="">Acceptance Rate</a> <i class="fas fa-arrow-down" id="arrow"></i></div>
             <div id="box3"><a href="">Question Solved</a> <i class="fas fa-arrow-down" id="arrow"></i></div>
         </div>
+        <% for(let i=0;i<arr.length;i++){ %>
+        <div class="newUser">
+            <div id="boxr"><a href="https://leetcode.com/${arr[i].username}/"><%=i+1%></a></div>
+            <div id="boxu"><a href="https://leetcode.com/${arr[i].username}/"><%=arr[i].username%></a></div>
+            <div id="boxu"><a href="https://leetcode.com/${arr[i].username}/"><%=arr[i].Year%></a></div>
+            <div id="boxu"><a href="https://leetcode.com/${arr[i].username}/"><%=arr[i].ranking%> </a></div>
+            <div id="boxu"><a href="https://leetcode.com/${arr[i].username}/"><%=arr[i].contribution_points%></a></div>
+            <div id="boxu"><a href="https://leetcode.com/${arr[i].username}/"><%=arr[i].acceptance_rate%></a></div>
+            <div id="boxn"><a href="https://leetcode.com/${arr[i].username}/"><%=arr[i].total_problems_solved%></a>
+            </div>
+        </div>
+        <% } %>
     </div>
+
     <div class="adduser">
         <a href="adduser">Click Here to add User</a>
     </div>

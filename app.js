@@ -25,60 +25,65 @@ db.once('open', function () {
     console.log("We are connected");
 });
 let myJson = [];
-const postSchema = new Schema({
-    email: String,
-    year: Number,
-    username: String
+const userLeetCodeData = new Schema({
+    status: String,
+    ranking: Number,
+    total_problems_solved: Number,
+    acceptance_rate: String,
+    easy_questions_solved: Number,
+    total_easy_questions: Number,
+    medium_questions_solved: Number,
+    total_medium_questions: Number,
+    hard_questions_solved: Number,
+    total_hard_questions: Number,
+    contribution_points: Number,
+    contribution_problems: Number,
+    contribution_testcases: Number,
+    reputation: Number,
+    username: String,
+    Year: Number
 });
-var Student = mongoose.model('Student', postSchema);
+var Student = mongoose.model('Student', userLeetCodeData);
 app.get("/", function (req, res) {
-    res.render("index");
+    Student.find(function (err, obj) {
+        if (err)
+            res.send("Error occured");
+        else
+            res.render("index", {
+                arr: obj
+            });
+    }).sort({
+        total_problems_solved: -1
+    });
+
 });
 app.get("/adduser", function (req, res) {
     res.render("adduser");
 });
-app.get('/Data.JSON', (req, res) => {
-    res.sendFile(path.join(__dirname + '/Data.JSON'));
-});
-
 app.post('/adduser', function (req, res) {
-    // fs.writeFileSync("Data.JSON", '');
-    var mydata = new Student(req.body);
-    mydata.save().then(() => {
-        Student.find(function (err, obj) {
-            if (err) return console.error(err);
-            console.log(obj);
-            for (let i = 0; i < obj.length; i++) {
-                const studentUrl = `https://competitive-coding-api.herokuapp.com/api/leetcode/${obj[i].username}`;
-                (async () => {
-                    const response = await request({
-                        url: studentUrl,
-                        headers: {
-                            accept: "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
-                            "accept-encoding": "gzip, deflate, br",
-                            "accept-language": "en-GB,en-US;q=0.9,en;q=0.8"
-                        },
-                        gzip: true
-                    });
-                    var temp = JSON.parse(response);
-                    if (temp.static != "Failed") {
-                        temp.year = `${obj[i].year+2016}`;
-                        temp.username = `${obj[i].username}`;
-                        myJson.push(temp);
-                    } else
-                        i--;
-                })();
-            }
+    var mydata = req.body;
+    console.log(mydata);
+    const studentUrl = `https://competitive-coding-api.herokuapp.com/api/leetcode/${mydata.username}`;
+    (async () => {
+        const response = await request({
+            url: studentUrl,
+            headers: {
+                accept: "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+                "accept-encoding": "gzip, deflate, br",
+                "accept-language": "en-GB,en-US;q=0.9,en;q=0.8"
+            },
+            gzip: true
         });
-        setTimeout(function () {
-            var final = JSON.stringify(myJson);
+        var temp = JSON.parse(response);
+        temp["username"] = mydata.username;
+        temp["Year"] = mydata.year + 2016;
+        console.log(typeof (temp));
+        var user = new Student(temp);
+        user.save().then(() => {
+            res.redirect("/");
+        });
+    })();
 
-            fs.writeFileSync("Data.JSON", final);
-        }, 10000)
-        res.send("This Item has been added to the data base:");
-    }).catch(() => {
-        res.status(400).send("It was not save dto the data base");
-    });
 });
 app.listen(port, () => {
     console.log(`example app is listening at http://localhost:${port}`);
