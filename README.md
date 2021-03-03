@@ -4,7 +4,11 @@
 
 <a href="https://ibb.co/wyw6jQS"><img src="https://i.ibb.co/nrnkt17/Leetcode2.jpg" alt="Leetcode2" border="0"></a>
 
-## Steps to Use the Application
+## To use it I already Hosted it 
+
+**1.Go to [This Link](https://leetcode-ranklist.herokuapp.com/)**
+
+## Steps to Use the Application Locally
 
 **1. Firstly Clone the Repository Using Below commands**
 
