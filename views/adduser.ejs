@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" href="Contact\style1.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <title>AddUser</title>
 </head>
 
@@ -30,6 +31,7 @@
         </div>
     </nav>
     <div class="container">
+        <p>Please Fill Your Details</p>
         <form action="/adduser" method="post">
             <div class="form-group">
                 <label for="exampleInputEmail1" class="form-control-lg" id="ip">Email address</label>
@@ -38,18 +40,6 @@
                 <small id="emailHelp ip" class="form-text text-muted">We'll never share your email with anyone
                     else.</small>
             </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend form-control-lg">
-                    <label class="input-group-text" for="inputGroupSelect01" id="ip">Year</label>
-                </div>
-                <select name="year" class="custom-select" id="inputGroupSelect01">
-                    <option selected>Choose...</option>
-                    <option value="1">2017</option>
-                    <option value="2">2018</option>
-                    <option value="3">2019</option>
-                    <option value="3">2020</option>
-                </select>
-            </div>
             <div class="form-group">
                 <label for="formGroupExampleInput" class=" form-control-lg" id="ip">Leetcode Username</label>
                 <input name="username" type="text" class="form-control  form-control-lg" id="formGroupExampleInput"
@@ -57,8 +47,32 @@
             </div>
             <button type="submit" class="btn btn-primary submit" id="ip">Submit</button>
         </form>
-    </div>
 
+    </div>
+    <div class="back">
+        <a href="/">Go back</a>
+    </div>
+    <footer>
+        <span>Created By <a href="#">kanswalUtkarsh</a> | <span class="far fa-copyright"></span> 2020 All rights
+            reserved.</span>
+        <div class="icon">
+            <a href="https://github.com/utkarshkanswal">
+                <div class="Github"><i class="fab fa-github-square fa-2x"></i></div>
+            </a>
+            <a href="https://www.facebook.com/utkarshkanswal.5/">
+                <div class="Facebook"> <i class="fab fa-facebook-square fa-2x"></i></div>
+            </a>
+            <a href="https://www.instagram.com/kanswal__utkarsh/">
+                <div class="Instagram"><i class="fab fa-instagram fa-2x"></i></div>
+            </a>
+            <a href="https://www.linkedin.com/in/utkarsh-kumar-7b0195189/">
+                <div class="Linkedin"><i class="fab fa-linkedin fa-2x"></i> </div>
+            </a>
+            <a href="https://www.youtube.com/user/utkarsh965">
+                <div class="Youtube"><i class="fab fa-youtube fa-2x"></i></div>
+            </a>
+        </div>
+    </footer>
 </body>
 
 </html>

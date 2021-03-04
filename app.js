@@ -41,7 +41,6 @@ const userLeetCodeData = new Schema({
     contribution_testcases: Number,
     reputation: Number,
     username: String,
-    Year: Number
 });
 var Student = mongoose.model('Student', userLeetCodeData);
 app.get("/", function (req, res) {
@@ -76,7 +75,6 @@ app.post('/adduser', function (req, res) {
         });
         var temp = JSON.parse(response);
         temp["username"] = mydata.username;
-        temp["Year"] = mydata.year + 2016;
         console.log(typeof (temp));
         var user = new Student(temp);
         user.save().then(() => {
