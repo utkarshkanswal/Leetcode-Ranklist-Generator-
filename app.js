@@ -27,19 +27,19 @@ db.once('open', function () {
 let myJson = [];
 const userLeetCodeData = new Schema({
     status: String,
-    ranking: Number,
+    ranking: String,
     total_problems_solved: Number,
     acceptance_rate: String,
-    easy_questions_solved: Number,
-    total_easy_questions: Number,
-    medium_questions_solved: Number,
-    total_medium_questions: Number,
-    hard_questions_solved: Number,
-    total_hard_questions: Number,
-    contribution_points: Number,
-    contribution_problems: Number,
-    contribution_testcases: Number,
-    reputation: Number,
+    easy_questions_solved: String,
+    total_easy_questions: String,
+    medium_questions_solved: String,
+    total_medium_questions: String,
+    hard_questions_solved: String,
+    total_hard_questions: String,
+    contribution_points: String,
+    contribution_problems: String,
+    contribution_testcases: String,
+    reputation: String,
     username: String,
 });
 var Student = mongoose.model('Student', userLeetCodeData);
@@ -56,6 +56,14 @@ app.get("/", function (req, res) {
         total_problems_solved: -1
     });
 
+});
+app.get("/delete/:id", function (req, res) {
+    let Foundid = req.params.id;
+    Student.deleteOne({
+        username: Foundid
+    }, function (err, obj) {
+        res.send("Item deleted");
+    });
 });
 app.get("/adduser", function (req, res) {
     res.render("adduser");
@@ -77,6 +85,7 @@ app.post("/", function (req, res) {
 });
 app.post('/adduser', function (req, res) {
     var mydata = req.body;
+    // console.log(mydata);
     Student.find({
         username: mydata.username
     }, function (err, obj) {
@@ -101,8 +110,9 @@ app.post('/adduser', function (req, res) {
                     if (temp.status == "Failed") {
                         res.render("Incorrect");
                     } else {
+                        // console.log(temp);
                         temp["username"] = mydata.username;
-                        console.log(typeof (temp));
+                        // console.log(typeof (temp));
                         var user = new Student(temp);
                         user.save().then(() => {
                             res.redirect("/");
