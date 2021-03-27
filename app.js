@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
 const fs = require('fs');
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8000;
 
 const db = mongoose.connection;
 const Schema = mongoose.Schema;
@@ -27,18 +27,18 @@ db.once('open', function () {
 let myJson = [];
 const userLeetCodeData = new Schema({
     status: String,
-    ranking: String,
+    ranking: Number,
     total_problems_solved: Number,
-    acceptance_rate: String,
-    easy_questions_solved: String,
-    total_easy_questions: String,
-    medium_questions_solved: String,
-    total_medium_questions: String,
-    hard_questions_solved: String,
-    total_hard_questions: String,
-    contribution_points: String,
-    contribution_problems: String,
-    contribution_testcases: String,
+    acceptance_rate: Number,
+    easy_questions_solved: Number,
+    total_easy_questions: Number,
+    medium_questions_solved: Number,
+    total_medium_questions: Number,
+    hard_questions_solved: Number,
+    total_hard_questions: Number,
+    contribution_points: Number,
+    contribution_problems: Number,
+    contribution_testcases: Number,
     reputation: String,
     username: String,
 });
@@ -83,9 +83,25 @@ app.post("/", function (req, res) {
             });
     });
 });
+app.post("/sortby", function (req, res) {
+    let data = req.body.field;
+    console.log(data);
+    Student.find(function (err, obj) {
+        if (err)
+            res.send("Error occured");
+        else
+            res.render("index", {
+                arr: obj,
+                index: 0
+            });
+    }).sort({
+        [data]: -1,
+    });
+});
 app.post('/adduser', function (req, res) {
     var mydata = req.body;
     // console.log(mydata);
+    console.log(mydata);
     Student.find({
         username: mydata.username
     }, function (err, obj) {
@@ -95,6 +111,7 @@ app.post('/adduser', function (req, res) {
             if (obj.length >= 1) {
                 res.render("Already");
             } else {
+
                 const studentUrl = `https://competitive-coding-api.herokuapp.com/api/leetcode/${mydata.username}`;
                 (async () => {
                     const response = await request({
@@ -112,7 +129,23 @@ app.post('/adduser', function (req, res) {
                     } else {
                         // console.log(temp);
                         temp["username"] = mydata.username;
-                        // console.log(typeof (temp));
+                        if (temp.ranking[0] == '~')
+                            temp["ranking"] = 100000;
+                        else
+                            temp["ranking"] = parseInt(temp.ranking);
+                        temp.acceptance_rate = temp.acceptance_rate.slice(0, -1) //'abcde'
+                        temp["acceptance_rate"] = parseInt(temp.acceptance_rate);
+                        temp["easy_questions_solved"] = parseInt(temp.easy_questions_solved);
+                        temp["hard_questions_solved"] = parseInt(temp.hard_questions_solved);
+                        temp["total_easy_questions"] = parseInt(temp.total_easy_questions);
+                        temp["total_hard_questions"] = parseInt(temp.total_hard_questions);
+                        temp["total_medium_questions"] = parseInt(temp.total_medium_questions);
+                        temp["medium_questions_solved"] = parseInt(temp.medium_questions_solved);
+                        temp["contribution_points"] = parseInt(temp.contribution_points);
+                        temp["contribution_problems"] = parseInt(temp.contribution_problems);
+                        temp["contribution_testcases"] = parseInt(temp.contribution_testcases);
+                        temp["total_problems_solved"] = parseInt(temp.total_problems_solved);
+                        console.log(temp);
                         var user = new Student(temp);
                         user.save().then(() => {
                             res.redirect("/");
