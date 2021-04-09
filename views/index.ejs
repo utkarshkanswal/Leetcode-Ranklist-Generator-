@@ -24,8 +24,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page"
-                            href="https://utkarshkanswal.github.io/My-Portfolio/">About Me</a>
+                        <a class="nav-link active" aria-current="page" href="https://www.utkarshkanswal.me">About Me</a>
                     </li>
                 </ul>
             </div>
@@ -56,23 +55,90 @@
         </form>
         </div>
     </div>
-        <div class="toprow">
-            <div id="box1"><a href="">Rank</a> <i class="fas fa-arrow-down" id="arrow"></i></div>
-            <div id="box2"><a href="">Username</a> <i class="fas fa-arrow-down" id="arrow"></i></div>
-            <!-- <div id="box2"><a href=""></a> <i class="fas fa-arrow-down" id="arrow"></i></div> -->
-            <div id="box2"><a href="">Ranking</a> <i class="fas fa-arrow-down" id="arrow"></i></div>
-            <div id="box2"><a href="">Contribution Point</a> <i class="fas fa-arrow-down" id="arrow"></i></div>
-            <div id="box2"><a href="">Acceptance Rate</a> <i class="fas fa-arrow-down" id="arrow"></i></div>
+                <div class="toprow">
+                <div id="box1"><a href="">Rank</a>
+                    
+                </div>
+                <div id="box2"><a href="">Username</a>
+                    <%if(direction===1){%>
+                <form action="/sort" method="post">
+                    <input type="hidden" name="username" value="up" />
+                    <button> <i class="fas fa-arrows-alt-v"></i></button>
+                </form>
+                <%}else{%>
+                <form action="/sort" method="post">
+                    <input type="hidden" name="username" value="down" />
+                    <button> <i class="fas fa-arrows-alt-v"></i></button>
+                </form>
+                <%}%>
+            </div>
+            <div id="box2"><a href="">Ranking</a>
+                <%if(direction===1){%>
+                <form action="/sort" method="post">
+                    <input type="hidden" name="ranking" value="up" />
+                    <button><i class="fas fa-arrows-alt-v"></i></button>
+                </form>
+                <%}else{%>
+                <form action="/sort" method="post">
+                    <input type="hidden" name="ranking" value="down" />
+                    <button><i class="fas fa-arrows-alt-v"></i></button>
+                </form>
+                <%}%>
+            </div>
+            <div id="box2"><a href="">Contribution Point</a>
+                <%if(direction===1){%>
+                <form action="/sort" method="post">
+                    <input type="hidden" name="contribution_points" value="up" />
+                    <button><i class="fas fa-arrows-alt-v"></i></button>
+                </form>
+                <%}else{%>
+                <form action="/sort" method="post">
+                    <input type="hidden" name="contribution_points" value="down" />
+                    <button><i class="fas fa-arrows-alt-v"></i></button>
+                </form>
+                <%}%>
+
+            </div>
+            <div id="box2"><a href="">Acceptance Rate</a>
+                <%if(direction===1){%>
+                <form action="/sort" method="post">
+                    <input type="hidden" name="acceptance_rate" value="up" />
+                    <button><i class="fas fa-arrows-alt-v"></i></button>
+                </form>
+                <%}else{%>
+                <form action="/sort" method="post">
+                    <input type="hidden" name="acceptance_rate" value="down" />
+                    <button name="acceptance_rate"><i class="fas fa-arrows-alt-v"></i></button>
+                </form>
+                <%}%>
+
+            </div>
             <div id="box3"><a href="">
                     <p>Question(Solved+Attempted)</p>
-                </a> <i class="fas fa-arrow-down" id="arrow"></i></div>
+                </a>
+                <%if(direction===1){%>
+                <form action="/sort" method="post">
+                    <input type="hidden" name="total_problems_solved" value="up" />
+                    <button><i class="fas fa-arrows-alt-v"></i></button>
+
+                </form>
+                <%}else{%>
+                <form action="/sort" method="post">
+                    <input type="hidden" name="total_problems_solved" value="down" />
+                    <button><i class="fas fa-arrows-alt-v"></i></button>
+                </form>
+                <%}%>
+            </div>
         </div>
         <% for(let i=0;i<arr.length;i++){ %>
-                <div class="newUser">
-                    <div id="boxr"><a href="https://leetcode.com/<%=arr[i].username%>/"><%=i+1%></a></div>
-                    <div id="boxu"><a href="https://leetcode.com/<%=arr[i].username%>/"><%=arr[i].username%></a></div>
+                <div class=" newUser">
+                    <div id="boxr"><a href="https://leetcode.com/<%=arr[i].username%>/"><%=i+1%></a>
+                    </div>
+                    <div id="boxu"><a href="https://leetcode.com/<%=arr[i].username%>/"><%=arr[i].username%></a>
+                    </div>
                     <!-- <div id="boxu"><a href="https://leetcode.com/<%arr[i].username%>/"><%=arr[i].Year%></a></div> -->
-                    <div id="boxu"><a href="https://leetcode.com/<%=arr[i].username%>/"><%=arr[i].ranking%> </a></div>
+                    <div id="boxu"><a href="https://leetcode.com/<%=arr[i].username%>/"><%=arr[i].ranking%>
+                        </a></div>
                     <div id="boxu"><a
                             href="https://leetcode.com/<%=arr[i].username%>/"><%=arr[i].contribution_points%></a>
                     </div>
@@ -89,7 +155,8 @@
                 <a href="adduser">Click Here to add User</a>
             </div>
             <footer>
-                <span>Created By <a href="#">kanswalUtkarsh</a> | <span class="far fa-copyright"></span> 2020 All rights
+                <span>Created By <a href="#">kanswalUtkarsh</a> | <span class="far fa-copyright"></span> 2020 All
+                    rights
                     reserved.</span>
                 <div class="icon">
                     <a href="https://github.com/utkarshkanswal">

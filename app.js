@@ -50,7 +50,8 @@ app.get("/", function (req, res) {
         else
             res.render("index", {
                 arr: obj,
-                index: 0
+                index: 0,
+                direction: -1,
             });
     }).sort({
         total_problems_solved: -1
@@ -79,7 +80,8 @@ app.post("/", function (req, res) {
         else
             res.render("index", {
                 arr: obj,
-                index: 1
+                index: 1,
+                direction: -1,
             });
     });
 });
@@ -92,11 +94,35 @@ app.post("/sortby", function (req, res) {
         else
             res.render("index", {
                 arr: obj,
-                index: 0
+                index: 0,
+                direction: -1,
             });
     }).sort({
         [data]: -1,
     });
+});
+app.post("/sort", function (req, res) {
+    let data = req.body;
+    let id;
+    if (data[Object.keys(data)[0]] == 'up') {
+        id = -1;
+    } else {
+        id = 1;
+    }
+    Student.find(function (err, obj) {
+        if (err)
+            res.send("Some Error Occurred");
+        else {
+            res.render("index", {
+                arr: obj,
+                index: 0,
+                direction: id,
+            });
+        }
+    }).sort({
+        [Object.keys(data)[0]]: [id],
+    });
+    // res.send("Successfull");
 });
 app.post('/adduser', function (req, res) {
     var mydata = req.body;
