@@ -1,6 +1,6 @@
 # Leetcode-Ranklist
 
-> It is the Leetcode ranklist in which User Can enter his username and accordingly on the basis of number of question solved , acuuracy etc it will ranked the user.
+> It is the Leetcode ranklist in which User Can enter his username and accordingly on the basis of number of question solved , accuracy etc it will ranked the user.
 <br>
 
 ![Image](./public/Images/LeetcodeProject.JPG)
@@ -39,7 +39,7 @@ npm install
 nodemon app.js
 ```
 
-- **Then got any web browser and go to Url http://localhost:3000/**
+- **Then go to any web browser and go to Url http://localhost:3000/**
 
 >Hurray! You can use the Ranklist generator now
 
