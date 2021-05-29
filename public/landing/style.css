@@ -39,7 +39,6 @@ body {
     background-color: rgb(119, 124, 126);
     margin-top: 50px;
     height: 50px;
-
 }
 
 p {
@@ -99,7 +98,6 @@ a {
     justify-content: space-between;
     background-color: rgb(177, 181, 184);
     height: 50px;
-
 }
 
 #boxr {
@@ -135,6 +133,7 @@ a {
     margin: 100px;
 }
 
+
 /* footer section start */
 
 footer {
@@ -160,7 +159,6 @@ footer .icon .Github:hover {
     color: #00FFFF;
     transition: all 0.6s ease;
     background: none;
-
 }
 
 footer .icon .Facebook {
@@ -173,7 +171,6 @@ footer .icon .Facebook:hover {
     color: #00FFFF;
     transition: all 0.6s ease;
     background: none;
-
 }
 
 footer .icon .Instagram {
@@ -186,7 +183,6 @@ footer .icon .Instagram:hover {
     color: #00FFFF;
     transition: all 0.6s ease;
     background: none;
-
 }
 
 footer .icon .Linkedin {
@@ -199,7 +195,6 @@ footer .icon .Linkedin:hover {
     color: #00FFFF;
     transition: all 0.6s ease;
     background: none;
-
 }
 
 footer .icon .Youtube {
@@ -212,13 +207,11 @@ footer .icon .Youtube:hover {
     color: #00FFFF;
     transition: all 0.6s ease;
     background: none;
-
 }
 
 footer span a {
     color: crimson;
     text-decoration: none;
-
 }
 
 footer span a:hover {

@@ -17,6 +17,7 @@
     "ejs": "^3.1.6",
     "export": "^0.1.337",
     "express": "^4.17.1",
+    "forest-express-mongoose": "^7.6.1",
     "mongoose": "^5.11.10",
     "parser": "^0.1.4",
     "request": "^2.88.2",

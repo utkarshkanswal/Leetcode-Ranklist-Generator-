@@ -5,46 +5,29 @@ const cheerio = require('cheerio');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
 const fs = require('fs');
-const app = express();
-const port = process.env.PORT || 8000;
-
+const forest = require('forest-express-mongoose');
+const models = require('./models/');
 const db = mongoose.connection;
+require('dotenv').config('.env');
+const port = process.env.PORT || 8000;
 const Schema = mongoose.Schema;
-
+const app = express();
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.set("views", __dirname + "/views"); // set express to look in this folder to render our view
 app.use(express.urlencoded());
-mongoose.connect('mongodb+srv://Leetcode:MxRHS4xx5ijHk8IO@leetcoderanklist.dlhii.mongodb.net/UserDetails?retryWrites=true&w=majority', {
+mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function () {
+db.once('open', function() {
     console.log("We are connected");
 });
 let myJson = [];
-const userLeetCodeData = new Schema({
-    status: String,
-    ranking: Number,
-    total_problems_solved: Number,
-    acceptance_rate: Number,
-    easy_questions_solved: Number,
-    total_easy_questions: Number,
-    medium_questions_solved: Number,
-    total_medium_questions: Number,
-    hard_questions_solved: Number,
-    total_hard_questions: Number,
-    contribution_points: Number,
-    contribution_problems: Number,
-    contribution_testcases: Number,
-    reputation: String,
-    username: String,
-});
-var Student = mongoose.model('Student', userLeetCodeData);
-app.get("/", function (req, res) {
-    Student.find(function (err, obj) {
+var Student = require('./models/index');
+app.get("/", function(req, res) {
+    Student.find(function(err, obj) {
         if (err)
             res.send("Error occured");
         else
@@ -58,23 +41,22 @@ app.get("/", function (req, res) {
     });
 
 });
-app.get("/delete/:id", function (req, res) {
+app.get("/delete/:id", function(req, res) {
     let Foundid = req.params.id;
     Student.deleteOne({
         username: Foundid
-    }, function (err, obj) {
+    }, function(err, obj) {
         res.send("Item deleted");
     });
 });
-app.get("/adduser", function (req, res) {
+app.get("/adduser", function(req, res) {
     res.render("adduser");
 });
-app.post("/", function (req, res) {
+app.post("/", function(req, res) {
     var data = req.body;
-    // console.log(data);
     Student.find({
         username: data.username
-    }, function (err, obj) {
+    }, function(err, obj) {
         if (err)
             res.send("Error occured");
         else
@@ -85,10 +67,10 @@ app.post("/", function (req, res) {
             });
     });
 });
-app.post("/sortby", function (req, res) {
+app.post("/sortby", function(req, res) {
     let data = req.body.field;
     console.log(data);
-    Student.find(function (err, obj) {
+    Student.find(function(err, obj) {
         if (err)
             res.send("Error occured");
         else
@@ -101,7 +83,7 @@ app.post("/sortby", function (req, res) {
         [data]: -1,
     });
 });
-app.post("/sort", function (req, res) {
+app.post("/sort", function(req, res) {
     let data = req.body;
     let id;
     if (data[Object.keys(data)[0]] == 'up') {
@@ -109,7 +91,7 @@ app.post("/sort", function (req, res) {
     } else {
         id = 1;
     }
-    Student.find(function (err, obj) {
+    Student.find(function(err, obj) {
         if (err)
             res.send("Some Error Occurred");
         else {
@@ -122,15 +104,13 @@ app.post("/sort", function (req, res) {
     }).sort({
         [Object.keys(data)[0]]: [id],
     });
-    // res.send("Successfull");
 });
-app.post('/adduser', function (req, res) {
+app.post('/adduser', function(req, res) {
     var mydata = req.body;
-    // console.log(mydata);
     console.log(mydata);
     Student.find({
         username: mydata.username
-    }, function (err, obj) {
+    }, function(err, obj) {
         if (err)
             res.render("Incorrect1");
         else {
@@ -139,7 +119,7 @@ app.post('/adduser', function (req, res) {
             } else {
 
                 const studentUrl = `https://competitive-coding-api.herokuapp.com/api/leetcode/${mydata.username}`;
-                (async () => {
+                (async() => {
                     const response = await request({
                         url: studentUrl,
                         headers: {
@@ -153,7 +133,6 @@ app.post('/adduser', function (req, res) {
                     if (temp.status == "Failed") {
                         res.render("Incorrect");
                     } else {
-                        // console.log(temp);
                         temp["username"] = mydata.username;
                         if (temp.ranking[0] == '~')
                             temp["ranking"] = 100000;
