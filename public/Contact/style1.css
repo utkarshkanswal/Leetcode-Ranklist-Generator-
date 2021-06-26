@@ -8,9 +8,8 @@ body {
     border: solid 2px slategrey;
     background-color: rgb(222, 235, 234);
     width: 35%;
-    /* height: 70%; */
     margin-top: 100px;
-    background-image: url("Images/sv1.jpg");
+    border-radius: 6px;
 }
 
 .back {
@@ -30,6 +29,7 @@ p {
 #ip {
     font-weight: 500;
 }
+
 
 /* footer section start */
 
@@ -56,7 +56,6 @@ footer .icon .Github:hover {
     color: #00FFFF;
     transition: all 0.6s ease;
     background: none;
-
 }
 
 footer .icon .Facebook {
@@ -69,7 +68,6 @@ footer .icon .Facebook:hover {
     color: #00FFFF;
     transition: all 0.6s ease;
     background: none;
-
 }
 
 footer .icon .Instagram {
@@ -82,7 +80,6 @@ footer .icon .Instagram:hover {
     color: #00FFFF;
     transition: all 0.6s ease;
     background: none;
-
 }
 
 footer .icon .Linkedin {
@@ -95,7 +92,6 @@ footer .icon .Linkedin:hover {
     color: #00FFFF;
     transition: all 0.6s ease;
     background: none;
-
 }
 
 footer .icon .Youtube {
@@ -108,13 +104,11 @@ footer .icon .Youtube:hover {
     color: #00FFFF;
     transition: all 0.6s ease;
     background: none;
-
 }
 
 footer span a {
     color: crimson;
     text-decoration: none;
-
 }
 
 footer span a:hover {

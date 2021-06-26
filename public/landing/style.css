@@ -6,6 +6,7 @@ body {
     margin-top: 50px;
     border: solid 2px rgb(212, 209, 206);
     padding: 20px;
+    border-radius: 5px;
 }
 
 #first {
