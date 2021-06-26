@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="landing\style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Leetcode Ranklist</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/adduser">AddUser</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="https://www.utkarshkanswal.me">About Me</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="search">
+                <form action="/" method="post">
+                    <input name="username" type="text" id="first" placeholder="Enter a username to search">
+                    <button type="submit" class="btn btn-primary submit" id="third">Apply</button>
+                </form>
+                <%if(index==1){%>
+                    <a href="/">Remove Filter <i class="fas fa-times-circle"></i></a>
+                    <%}%>
+            </div>
+            <div class="search">
+                <form action="/sortby" method="post">
+                    <select class="form-select my-4" name="field" aria-label="Default select example">
+                <option selected>Sort By</option>
+                <option value="ranking">Ranking</option>
+                <option value="acceptance_rate">Acceptance Rate</option>
+                <option value="contribution_points">Contribution Point</option>
+                <option value="total_problems_solved">Total problem Solved</option>
+                <option value="username">Username</option>
+            </select>
+                    <button type="submit" class="btn btn-primary submit" id="fourth">Apply</button>
+                </form>
+            </div>
+        </div>
+        <div class="toprow">
+            <div id="box1"><a href="">Rank</a>
+            </div>
+            <div id="box2"><a href="">Username</a>
+                <%if(direction===1){%>
+                    <form action="/sort" method="post">
+                        <input type="hidden" name="username" value="up" />
+                        <button> <i class="fas fa-arrows-alt-v"></i></button>
+                    </form>
+                    <%}else{%>
+                        <form action="/sort" method="post">
+                            <input type="hidden" name="username" value="down" />
+                            <button> <i class="fas fa-arrows-alt-v"></i></button>
+                        </form>
+                        <%}%>
+            </div>
+            <div id="box2"><a href="">Ranking</a>
+                <%if(direction===1){%>
+                    <form action="/sort" method="post">
+                        <input type="hidden" name="ranking" value="up" />
+                        <button><i class="fas fa-arrows-alt-v"></i></button>
+                    </form>
+                    <%}else{%>
+                        <form action="/sort" method="post">
+                            <input type="hidden" name="ranking" value="down" />
+                            <button><i class="fas fa-arrows-alt-v"></i></button>
+                        </form>
+                        <%}%>
+            </div>
+            <div id="box2"><a href="">Contribution Point</a>
+                <%if(direction===1){%>
+                    <form action="/sort" method="post">
+                        <input type="hidden" name="contribution_points" value="up" />
+                        <button><i class="fas fa-arrows-alt-v"></i></button>
+                    </form>
+                    <%}else{%>
+                        <form action="/sort" method="post">
+                            <input type="hidden" name="contribution_points" value="down" />
+                            <button><i class="fas fa-arrows-alt-v"></i></button>
+                        </form>
+                        <%}%>
+
+            </div>
+            <div id="box2"><a href="">Acceptance Rate</a>
+                <%if(direction===1){%>
+                    <form action="/sort" method="post">
+                        <input type="hidden" name="acceptance_rate" value="up" />
+                        <button><i class="fas fa-arrows-alt-v"></i></button>
+                    </form>
+                    <%}else{%>
+                        <form action="/sort" method="post">
+                            <input type="hidden" name="acceptance_rate" value="down" />
+                            <button name="acceptance_rate"><i class="fas fa-arrows-alt-v"></i></button>
+                        </form>
+                        <%}%>
+
+            </div>
+            <div id="box3">
+                <a href="">
+                    <p style="font-size: 18px;font-weight: 600;">Total Problems Solved</p>
+                </a>
+                <%if(direction===1){%>
+                    <form action="/sort" method="post">
+                        <input type="hidden" name="total_problems_solved" value="up" />
+                        <button><i class="fas fa-arrows-alt-v"></i></button>
+
+                    </form>
+                    <%}else{%>
+                        <form action="/sort" method="post">
+                            <input type="hidden" name="total_problems_solved" value="down" />
+                            <button><i class="fas fa-arrows-alt-v"></i></button>
+                        </form>
+                        <%}%>
+            </div>
+        </div>
+        <% for(let i=0;i<arr.length;i++){ %>
+            <div class="newUser shadow">
+                <div id="boxr">
+                    <a href="https://leetcode.com/<%=arr[i].username%>/">
+                        <%=i+1%>
+                    </a>
+                </div>
+                <div id="boxu">
+                    <a href="https://leetcode.com/<%=arr[i].username%>/">
+                        <%=arr[i].username%>
+                    </a>
+                </div>
+                <!-- <div id="boxu"><a href="https://leetcode.com/<%arr[i].username%>/"><%=arr[i].Year%></a></div> -->
+                <div id="boxu">
+                    <a href="https://leetcode.com/<%=arr[i].username%>/">
+                        <%=arr[i].ranking%>
+                    </a>
+                </div>
+                <div id="boxu">
+                    <a href="https://leetcode.com/<%=arr[i].username%>/">
+                        <%=arr[i].contribution_points%>
+                    </a>
+                </div>
+                <div id="boxu">
+                    <a href="https://leetcode.com/<%=arr[i].username%>/">
+                        <%=arr[i].acceptance_rate%>
+                    </a>
+                </div>
+                <div id="boxn">
+                    <a href="https://leetcode.com/<%=arr[i].username%>/">
+                        <%=arr[i].total_problems_solved%>
+                    </a>
+                </div>
+            </div>
+            <% } %>
+    </div>
+
+    <div class="adduser">
+        <a href="adduser">Click Here to add User</a>
+    </div>
+    <footer>
+        <span>Created By <a href="#">kanswalUtkarsh</a> | <span class="far fa-copyright"></span> 2020 All rights reserved.
+        </span>
+        <div class="icon">
+            <a href="https://github.com/utkarshkanswal">
+                <div class="Github"><i class="fab fa-github-square fa-2x"></i></div>
+            </a>
+            <a href="https://www.facebook.com/utkarshkanswal.5/">
+                <div class="Facebook"> <i class="fab fa-facebook-square fa-2x"></i></div>
+            </a>
+            <a href="https://www.instagram.com/kanswal__utkarsh/">
+                <div class="Instagram"><i class="fab fa-instagram fa-2x"></i></div>
+            </a>
+            <a href="https://www.linkedin.com/in/utkarsh-kumar-7b0195189/">
+                <div class="Linkedin"><i class="fab fa-linkedin fa-2x"></i> </div>
+            </a>
+            <a href="https://www.youtube.com/user/utkarsh965">
+                <div class="Youtube"><i class="fab fa-youtube fa-2x"></i></div>
+            </a>
+        </div>
+    </footer>
+    <script src="landing\index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

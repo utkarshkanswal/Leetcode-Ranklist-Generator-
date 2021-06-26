@@ -1,0 +1,220 @@
+body {
+    background-color: white;
+}
+
+.search {
+    margin-top: 50px;
+    border: solid 2px rgb(212, 209, 206);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+#first {
+    width: 40%;
+    height: 50px;
+    font-weight: 500;
+    font-size: large;
+}
+
+#second {
+    width: 20%;
+    height: 50px;
+    margin-left: 20px;
+    font-weight: 500;
+    font-size: large;
+}
+
+#third {
+    width: 13%;
+    height: 50px;
+    margin-left: 20px;
+    background-color: rgb(41, 37, 34);
+    color: seashell;
+    font-weight: 500;
+    font-size: large;
+}
+
+.toprow {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(119, 124, 126);
+    margin-top: 50px;
+    height: 50px;
+}
+
+p {
+    font-size: 14px;
+}
+
+#box1 {
+    border-right: solid 3px rgb(88, 90, 87);
+    border-top: solid 3px rgb(88, 90, 87);
+    border-bottom: solid 3px rgb(88, 90, 87);
+    border-left: solid 3px rgb(88, 90, 87);
+    /* width: 33.33%; */
+    width: 15%;
+    padding: 5px;
+    font-size: 20px;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+}
+
+a {
+    color: black;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+#box2 {
+    border-right: solid 3px rgb(88, 90, 87);
+    border-top: solid 3px rgb(88, 90, 87);
+    border-bottom: solid 3px rgb(88, 90, 87);
+    width: 33.33%;
+    padding: 5px;
+    font-size: 20px;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+}
+
+#box3 {
+    border-right: solid 3px rgb(88, 90, 87);
+    border-top: solid 3px rgb(88, 90, 87);
+    border-bottom: solid 3px rgb(88, 90, 87);
+    width: 33.33%;
+    padding: 5px;
+    font-size: 20px;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+}
+
+#arrow {
+    padding-top: 8px;
+}
+
+.newUser {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(177, 181, 184);
+    height: 50px;
+}
+
+#boxr {
+    border-right: solid 2px rgb(189, 198, 202);
+    border-top: solid 2px rgb(194, 203, 207);
+    border-bottom: solid 2px rgb(88, 90, 87);
+    border-left: solid 2px rgb(88, 90, 87);
+    /* width: 33.33%; */
+    width: 14%;
+    padding: 15px;
+    font-size: 18px;
+}
+
+#boxu {
+    border-right: solid 2px rgb(194, 203, 207);
+    border-top: solid 2px rgb(194, 203, 207);
+    border-bottom: solid 2px rgb(88, 90, 87);
+    width: 33.33%;
+    padding: 15px;
+    font-size: 18px;
+}
+
+#boxn {
+    border-right: solid 2px rgb(88, 90, 87);
+    border-top: solid 2px rgb(194, 203, 207);
+    border-bottom: solid 2px rgb(88, 90, 87);
+    width: 33.33%;
+    padding: 15px;
+    font-size: 18px;
+}
+
+.adduser {
+    margin: 100px;
+}
+
+
+/* footer section start */
+
+footer {
+    background: #111;
+    padding: 20px 23px;
+    color: #fff;
+    display: flex;
+    margin-top: 250px;
+}
+
+footer .icon {
+    display: flex;
+    padding-left: 500px;
+}
+
+footer .icon .Github {
+    padding-left: 50px;
+    color: #fff;
+    transition: all 0.6s ease;
+}
+
+footer .icon .Github:hover {
+    color: #00FFFF;
+    transition: all 0.6s ease;
+    background: none;
+}
+
+footer .icon .Facebook {
+    padding-left: 50px;
+    color: blue;
+    transition: all 0.8s ease;
+}
+
+footer .icon .Facebook:hover {
+    color: #00FFFF;
+    transition: all 0.6s ease;
+    background: none;
+}
+
+footer .icon .Instagram {
+    padding-left: 50px;
+    color: crimson;
+    transition: all 0.10s ease;
+}
+
+footer .icon .Instagram:hover {
+    color: #00FFFF;
+    transition: all 0.6s ease;
+    background: none;
+}
+
+footer .icon .Linkedin {
+    padding-left: 50px;
+    color: blue;
+    transition: all 0.12s ease;
+}
+
+footer .icon .Linkedin:hover {
+    color: #00FFFF;
+    transition: all 0.6s ease;
+    background: none;
+}
+
+footer .icon .Youtube {
+    padding-left: 50px;
+    color: crimson;
+    transition: all 0.14s ease;
+}
+
+footer .icon .Youtube:hover {
+    color: #00FFFF;
+    transition: all 0.6s ease;
+    background: none;
+}
+
+footer span a {
+    color: crimson;
+    text-decoration: none;
+}
+
+footer span a:hover {
+    text-decoration: underline;
+}
