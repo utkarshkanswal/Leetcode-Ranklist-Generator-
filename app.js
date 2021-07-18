@@ -30,16 +30,62 @@ app.get("/", function(req, res) {
     Student.find(function(err, obj) {
         if (err)
             res.send("Error occured");
-        else
+        else {
+            for (let i = 0; i < obj.length; i++) {
+                const studentUrl = `https://competitive-coding-api.herokuapp.com/api/leetcode/${obj[i].username}`;
+                (async() => {
+                    const response = await request({
+                        url: studentUrl,
+                        headers: {
+                            accept: "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+                            "accept-encoding": "gzip, deflate, br",
+                            "accept-language": "en-GB,en-US;q=0.9,en;q=0.8"
+                        },
+                        gzip: true
+                    });
+                    var temp = JSON.parse(response);
+                    if (temp.status == "Failed") {
+                        res.render("Incorrect");
+                    } else {
+                        if (temp.ranking[0] == '~')
+                            obj[i]["ranking"] = 100000;
+                        else
+                            obj[i]["ranking"] = parseInt(temp.ranking);
+                        temp.acceptance_rate = temp.acceptance_rate.slice(0, -1) //'abcde'
+                        obj[i]["acceptance_rate"] = parseInt(temp.acceptance_rate);
+                        obj[i]["easy_questions_solved"] = parseInt(temp.easy_questions_solved);
+                        obj[i]["hard_questions_solved"] = parseInt(temp.hard_questions_solved);
+                        obj[i]["total_easy_questions"] = parseInt(temp.total_easy_questions);
+                        obj[i]["total_hard_questions"] = parseInt(temp.total_hard_questions);
+                        obj[i]["total_medium_questions"] = parseInt(temp.total_medium_questions);
+                        obj[i]["medium_questions_solved"] = parseInt(temp.medium_questions_solved);
+                        obj[i]["contribution_points"] = parseInt(temp.contribution_points);
+                        obj[i]["contribution_problems"] = parseInt(temp.contribution_problems);
+                        obj[i]["contribution_testcases"] = parseInt(temp.contribution_testcases);
+                        obj[i]["total_problems_solved"] = parseInt(temp.total_problems_solved);
+                        Student.updateOne({
+                            _id: obj[i]._id
+                        }, obj[i], function(err, obj) {
+                            if (err) {
+                                res.status(500).json({
+                                    err: err.message
+                                });
+                            } else {
+
+                            }
+                        });
+                    }
+                })();
+            }
             res.render("index", {
                 arr: obj,
                 index: 0,
                 direction: -1,
             });
+        }
     }).sort({
         total_problems_solved: -1
     });
-
 });
 app.get("/delete/:id", function(req, res) {
     let Foundid = req.params.id;
@@ -73,12 +119,13 @@ app.post("/sortby", function(req, res) {
     Student.find(function(err, obj) {
         if (err)
             res.send("Error occured");
-        else
+        else {
             res.render("index", {
                 arr: obj,
                 index: 0,
                 direction: -1,
             });
+        }
     }).sort({
         [data]: -1,
     });
